@@ -3,6 +3,10 @@
  * Inspired by Github syntax coloring
  */
 
+body{
+    color: #24292e;
+}
+
  code[class*="language-"],
  pre[class*="language-"] {
      color: #393A34;
@@ -26,6 +30,14 @@
 
      background-color: white !important;
  }
+
+ #article-container pre code {
+     color: #24292e ;
+ }
+ 
+ #article-container pre, #article-container code{
+     font-size: 13px !important;
+ } 
  
  pre > code[class*="language-"] {
      font-size: 1em;
@@ -63,8 +75,9 @@
  .token.prolog,
  .token.doctype,
  .token.cdata {
-     color: #999988;
-     font-style: italic;
+     color: #6a737d;
+     font-size: 11px;
+     /* font-style: italic; */
  }
  
  .token.namespace {
@@ -73,7 +86,7 @@
  
  .token.string,
  .token.attr-value {
-     color: #e3116c;
+     color: #032f62;
  }
  
  .token.punctuation,
@@ -91,20 +104,24 @@
  .token.property,
  .token.regex,
  .token.inserted {
-     color: #36acaa;
+     color: #005cc5;
  }
  
  .token.atrule,
  .token.keyword,
  .token.attr-name,
  .language-autohotkey .token.selector {
-     color: #00a4db;
+     color: #d73a49;
+ }
+
+ .token.class-name {
+     color: #6f42c1 !important;
  }
  
  .token.function,
  .token.deleted,
  .language-autohotkey .token.tag {
-     color: #9a050f;
+     color: #24292e;
  }
  
  .token.tag,
@@ -116,9 +133,45 @@
  .token.important,
  .token.function,
  .token.bold {
-     font-weight: bold;
+     /* font-weight: bold; */
+     font-weight: normal;
  }
  
  .token.italic {
      font-style: italic;
+ }
+
+
+ #article-container .highlight-tools {
+    border-top: 1px solid #e1e4e8;
+    border-bottom: 0;
+    border-left: 1px solid #e1e4e8;
+    border-right: 1px solid #e1e4e8;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: #f6f8fa;
+    color: #24292e;
+    height: 1.15em;
+ }
+
+ #article-container pre[class*='language-'].line-numbers  {
+     border-top: 0;
+     border-bottom: 1px solid #e1e4e8;
+     border-left: 1px solid #e1e4e8;
+     border-right: 1px solid #e1e4e8;
+     border-bottom-left-radius: 6px;
+     border-bottom-right-radius: 6px;
+ }
+
+ #article-container .highlight-tools .code-lang {
+     font-size: 0.15em;
+ }
+
+
+ #article-container code {
+     background-color: rgba(27,31,35,0.05);
+     border-radius: 5px;
+     font-size: 85% !important;
+     padding: .2em .4em;
+     color: #24292e;
  }
