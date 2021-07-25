@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nginx服务启停和升级 | 学习笔记</title><meta name="keywords" content="Nginx"><meta name="author" content="liberxk"><meta name="copyright" content="liberxk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="启停Nginx默认采用的是多进程的方式来工作的，当将Nginx启动后，我们通过ps -ef | grep nginx命令可以查看到如下内容： [root@192 ~]# ps -ef | grep nginx root       26115       1  0 18:35 ?        00:00:00 nginx: master process .&#x2F;nginx nobody     26">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nginx服务启停和升级">
+<meta property="og:url" content="http://jiukailove.github.io/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:description" content="启停Nginx默认采用的是多进程的方式来工作的，当将Nginx启动后，我们通过ps -ef | grep nginx命令可以查看到如下内容： [root@192 ~]# ps -ef | grep nginx root       26115       1  0 18:35 ?        00:00:00 nginx: master process .&#x2F;nginx nobody     26">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.unsplash.com/photo-1564347208312-4edb9f9a866f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNjg4MTU1NQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080">
+<meta property="article:published_time" content="2021-07-25T15:31:11.000Z">
+<meta property="article:modified_time" content="2021-07-25T12:03:23.863Z">
+<meta property="article:author" content="liberxk">
+<meta property="article:tag" content="Nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1564347208312-4edb9f9a866f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNjg4MTU1NQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://jiukailove.github.io/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: liberxk","link":"链接: ","source":"来源: 学习笔记","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Nginx服务启停和升级',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-25 12:03:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/self/github.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">学习笔记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Nginx服务启停和升级<a class="post-edit-link" href="https://github.com/jiukailove/blog-source/edit/main/source/_posts/Nginx/Nginx服务启停和升级.md" title="编辑" target="_blank"><i class="fas fa-pencil-alt"></i></a></h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2021-07-25T15:31:11.000Z" title="undefined 2021-07-25 15:31:11">2021-07-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Nginx服务启停和升级"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h3 id="启停"><a href="#启停" class="headerlink" title="启停"></a>启停</h3><p>Nginx默认采用的是多进程的方式来工作的，当将Nginx启动后，我们通过<code>ps -ef | grep nginx</code>命令可以查看到如下内容：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@192 ~<span class="token punctuation">]</span><span class="token comment"># ps -ef | grep nginx</span>
+root       <span class="token number">26115</span>       <span class="token number">1</span>  <span class="token number">0</span> <span class="token number">18</span>:35 ?        00:00:00 nginx: master process ./nginx
+nobody     <span class="token number">26116</span>   <span class="token number">26115</span>  <span class="token number">0</span> <span class="token number">18</span>:35 ?        00:00:00 nginx: worker process
+root       <span class="token number">26712</span>   <span class="token number">26666</span>  <span class="token number">0</span> <span class="token number">21</span>:57 pts/1    00:00:00 <span class="token function">grep</span> --color<span class="token operator">=</span>auto nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>,Nginx后台进程中包含一个master进程和多个worker进程，master进程主要用来管理worker进程，包含接收外界的信息，并将接收到的信号发送给各个worker进程，监控worker进程的状态，当worker进程出现异常退出后，会自动重新启动新的worker进程。而worker进程则是专门用来处理用户请求的，各个worker进程之间是平等的并且相互独立，处理请求的机会也是一样的。<br>我们现在作为管理员，只需要通过给master进程发送信号就可以来控制Nginx,这个时候我们需要有两个前提条件，一个是要操作的master进程，一个是信号。</p>
+<h5 id="获取进程ID"><a href="#获取进程ID" class="headerlink" title="获取进程ID"></a>获取进程ID</h5><ul>
+<li>通过 <code>ps -ef | grep nginx</code></li>
+<li>nginx的<code>./configure</code>的配置参数的时候，有一个参数是<code>--pid-path=PATH</code>默认是<code>/usr/local/nginx/logs/nginx.pid</code>,所以可以通过查看该文件来获取nginx的master进程ID</li>
+</ul>
+<h4 id="信号控制"><a href="#信号控制" class="headerlink" title="信号控制"></a>信号控制</h4><h5 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h5><table>
+<thead>
+<tr>
+<th>信号</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TERM/INT</td>
+<td>立即关闭整个服务</td>
+</tr>
+<tr>
+<td>QUIT</td>
+<td>“优雅”地关闭整个服务</td>
+</tr>
+<tr>
+<td>HUP</td>
+<td>重读配置文件并使用服务对新配置项生效</td>
+</tr>
+<tr>
+<td>USR1</td>
+<td>重新打开日志文件，可以用来进行日志切割</td>
+</tr>
+<tr>
+<td>USR2</td>
+<td>平滑升级到最新版的nginx</td>
+</tr>
+<tr>
+<td>WINCH</td>
+<td>所有子进程不在接收处理新连接，相当于给work进程发送QUIT指令</td>
+</tr>
+</tbody></table>
+<p>调用命令为<code>kill -signal PID</code></p>
+<p>signal:即为信号；PID即为获取到的master线程ID</p>
+<ol>
+<li>发送TERM/INT信号给master进程，会将Nginx服务立即关闭。</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -<span class="token environment constant">TERM</span> PID / 等同于kill -<span class="token environment constant">TERM</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span> 其实就是传入`<span class="token variable"><span class="token variable">`</span>内的结果
+<span class="token function">kill</span> -INT PID / <span class="token function">kill</span> -INT <span class="token variable">`</span></span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid`<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ol start="2">
+<li>发送QUIT信号给master进程，master进程会控制所有的work进程不再接收新的请求，等所有请求处理完后，在把进程都关闭掉。</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -QUIT PID / <span class="token function">kill</span> -<span class="token environment constant">TERM</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="3">
+<li>发送HUP信号给master进程，master进程会把控制旧的work进程不再接收新的请求，等处理完请求后将旧的work进程关闭掉，然后根据nginx的配置文件重新启动新的work进程</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -HUP PID / <span class="token function">kill</span> -<span class="token environment constant">TERM</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="4">
+<li>发送USR1信号给master进程，告诉Nginx重新开启日志文件</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -USR1 PID / <span class="token function">kill</span> -<span class="token environment constant">TERM</span> <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="5">
+<li>发送USR2信号给master进程，告诉master进程要平滑升级，这个时候，会重新开启对应的master进程和work进程，整个系统中将会有两个master进程，并且新的master进程的PID会被记录在<code>/usr/local/nginx/logs/nginx.pid</code>而之前的旧的master进程PID会被记录在<code>/usr/local/nginx/logs/nginx.pid.oldbin</code>文件中，接着再次发送QUIT信号给旧的master进程，让其处理完请求后再进行关闭</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -USR2 PID / <span class="token function">kill</span> -USR2 <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -QUIT PID / <span class="token function">kill</span> -QUIT <span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid.oldbin<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<ol start="6">
+<li>发送WINCH信号给master进程,让master进程控制不让所有的work进程在接收新的请求了，请求处理完后关闭work进程。注意master进程不会被关闭掉</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -WINCH PID /kill -WINCH<span class="token variable"><span class="token variable">`</span><span class="token function">cat</span> /usr/local/nginx/logs/nginx.pid<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="命令行控制"><a href="#命令行控制" class="headerlink" title="命令行控制"></a>命令行控制</h4><p>此方式是通过Nginx安装目录下的sbin下的可执行文件nginx来进行Nginx状态的控制，我们可以通过<code>nginx -h</code>来查看都有哪些参数可以用：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>root@192 sbin<span class="token punctuation">]</span><span class="token comment"># ./nginx -h</span>
+nginx version: nginx/1.16.1
+Usage: nginx <span class="token punctuation">[</span>-?hvVtTq<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s signal<span class="token punctuation">]</span> <span class="token punctuation">[</span>-c filename<span class="token punctuation">]</span> <span class="token punctuation">[</span>-p prefix<span class="token punctuation">]</span> <span class="token punctuation">[</span>-g directives<span class="token punctuation">]</span>
+
+Options:
+  -?,-h         <span class="token builtin class-name">:</span> this <span class="token builtin class-name">help</span>
+  -v            <span class="token builtin class-name">:</span> show version and <span class="token builtin class-name">exit</span>
+  -V            <span class="token builtin class-name">:</span> show version and configure options <span class="token keyword">then</span> <span class="token builtin class-name">exit</span>
+  -t            <span class="token builtin class-name">:</span> <span class="token builtin class-name">test</span> configuration and <span class="token builtin class-name">exit</span>
+  -T            <span class="token builtin class-name">:</span> <span class="token builtin class-name">test</span> configuration, dump it and <span class="token builtin class-name">exit</span>
+  -q            <span class="token builtin class-name">:</span> suppress non-error messages during configuration testing
+  -s signal     <span class="token builtin class-name">:</span> send signal to a master process: stop, quit, reopen, reload
+  -p prefix     <span class="token builtin class-name">:</span> <span class="token builtin class-name">set</span> prefix path <span class="token punctuation">(</span>default: /usr/local/nginx/<span class="token punctuation">)</span>
+  -c filename   <span class="token builtin class-name">:</span> <span class="token builtin class-name">set</span> configuration <span class="token function">file</span> <span class="token punctuation">(</span>default: /usr/local/nginx/conf/nginx.conf<span class="token punctuation">)</span>
+  -g directives <span class="token builtin class-name">:</span> <span class="token builtin class-name">set</span> global directives out of configuration <span class="token function">file</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>-?和-h:显示帮助信息<br>-v:打印版本号信息并退出<br>-V:打印版本号信息和配置信息并退出<br>-t:测试nginx的配置文件语法是否正确并退出<br>-T:测试nginx的配置文件语法是否正确并列出用到的配置文件信息然后退出<br>-q:在配置测试期间禁止显示非错误消息<br>-s:signal信号，后面可以跟 ：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">stop<span class="token punctuation">[</span>快速关闭，类似于<span class="token environment constant">TERM</span>/INT信号的作用<span class="token punctuation">]</span>
+quit<span class="token punctuation">[</span>优雅的关闭，类似于QUIT信号的作用<span class="token punctuation">]</span> 
+reopen<span class="token punctuation">[</span>重新打开日志文件类似于USR1信号的作用<span class="token punctuation">]</span> 
+reload<span class="token punctuation">[</span>类似于HUP信号的作用<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>-p:prefix，指定Nginx的prefix路径，(默认为: /usr/local/nginx/)<br>-c:filename,指定Nginx的配置文件路径,(默认为: conf/nginx.conf)<br>-g:用来补充Nginx配置文件，向Nginx服务指定启动时应用全局的配置</p>
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><p>如果想对Nginx的版本进行更新，或者要应用一些新的模块，最简单的做法就是停止当前的Nginx服务，然后开启新的Nginx服务。但是这样会导致在一段时间内，用户是无法访问服务器。为了解决这个问题，我们就需要用到Nginx服务器提供的平滑升级功能。</p>
+<h5 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h5><p>（1）先准备两个版本的Nginx分别是 1.14.2和1.16.1</p>
+<p>（2）使用Nginx源码安装的方式将1.14.2版本安装成功并正确访问</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">进入安装目录
+./configure
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>（3）将Nginx1.16.1进行参数配置和编译，不需要进行安装。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">进入安装目录
+./configure
+<span class="token function">make</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="方案一-使用Nginx服务信号进行升级"><a href="#方案一-使用Nginx服务信号进行升级" class="headerlink" title="方案一:使用Nginx服务信号进行升级"></a>方案一:使用Nginx服务信号进行升级</h4><p>第一步:将1.14.2版本的sbin目录下的nginx进行备份</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/nginx/sbin
+<span class="token function">mv</span> nginx nginxold<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第二步:将Nginx1.16.1安装目录编译后的objs目录下的nginx文件，拷贝到原来<code>/usr/local/nginx/sbin</code>目录下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/nginx/core/nginx-1.16.1/objs
+<span class="token function">cp</span> nginx /usr/local/nginx/sbin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第三步:发送信号USR2给Nginx的1.14.2版本对应的master进程</p>
+<p>第四步:发送信号QUIT给Nginx的1.14.2版本对应的master进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -USR2<span class="token variable"><span class="token variable">`</span>/usr/local/logs/nginx.pid.oldbin<span class="token variable">`</span></span>
+<span class="token function">kill</span> -QUIT <span class="token variable"><span class="token variable">`</span>/usr/local/logs/nginx.pid.oldbin<span class="token variable">`</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="方案二-使用Nginx安装目录的make命令完成升级"><a href="#方案二-使用Nginx安装目录的make命令完成升级" class="headerlink" title="方案二:使用Nginx安装目录的make命令完成升级"></a>方案二:使用Nginx安装目录的make命令完成升级</h4><p>第一步:将1.14.2版本的sbin目录下的nginx进行备份</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/nginx/sbin
+<span class="token function">mv</span> nginx nginxold<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第二步:将Nginx1.16.1安装目录编译后的objs目录下的nginx文件，拷贝到原来<code>/usr/local/nginx/sbin</code>目录下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/nginx/core/nginx-1.16.1/objs
+<span class="token function">cp</span> nginx /usr/local/nginx/sbin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>第三步:进入到安装目录，执行<code>make upgrade</code></p>
+<p>第四步:查看是否更新成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./nginx -v<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">liberxk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://jiukailove.github.io/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/">http://jiukailove.github.io/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://jiukailove.github.io" target="_blank">学习笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Nginx/">Nginx</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/07/25/Nginx/Nginx%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://images.unsplash.com/photo-1564347208312-4edb9f9a866f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNjg4MTU1NQ&amp;ixlib=rb-1.2.1&amp;q=80&amp;utm_campaign=api-credit&amp;utm_medium=referral&amp;utm_source=unsplash_source&amp;w=1080" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Nginx进阶篇（一）</div></div></a></div><div class="next-post pull-right"><a href="/2021/07/25/Nginx/Nginx%E5%AE%89%E8%A3%85/"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://images.unsplash.com/photo-1564347208312-4edb9f9a866f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyNjg4MTU1NQ&amp;ixlib=rb-1.2.1&amp;q=80&amp;utm_campaign=api-credit&amp;utm_medium=referral&amp;utm_source=unsplash_source&amp;w=1080" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Nginx安装</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">liberxk</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%81%9C"><span class="toc-number">1.</span> <span class="toc-text">启停</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E8%BF%9B%E7%A8%8BID"><span class="toc-number">1.0.1.</span> <span class="toc-text">获取进程ID</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7%E6%8E%A7%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">信号控制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%A1%E5%8F%B7"><span class="toc-number">1.1.1.</span> <span class="toc-text">信号</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%8E%A7%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">命令行控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%87%E7%BA%A7"><span class="toc-number">2.</span> <span class="toc-text">升级</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">2.0.1.</span> <span class="toc-text">环境准备</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%B8%80-%E4%BD%BF%E7%94%A8Nginx%E6%9C%8D%E5%8A%A1%E4%BF%A1%E5%8F%B7%E8%BF%9B%E8%A1%8C%E5%8D%87%E7%BA%A7"><span class="toc-number">2.1.</span> <span class="toc-text">方案一:使用Nginx服务信号进行升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E4%BA%8C-%E4%BD%BF%E7%94%A8Nginx%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95%E7%9A%84make%E5%91%BD%E4%BB%A4%E5%AE%8C%E6%88%90%E5%8D%87%E7%BA%A7"><span class="toc-number">2.2.</span> <span class="toc-text">方案二:使用Nginx安装目录的make命令完成升级</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Nginx实现服务器端集群搭建">Nginx实现服务器端集群搭建</a><time datetime="2021-07-25T17:36:15.000Z" title="发表于 2021-07-25 17:36:15">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="Nginx负载均衡">Nginx负载均衡</a><time datetime="2021-07-25T17:21:55.000Z" title="发表于 2021-07-25 17:21:55">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Nginx进阶篇（二）">Nginx进阶篇（二）</a><time datetime="2021-07-25T15:52:46.000Z" title="发表于 2021-07-25 15:52:46">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" title="Nginx进阶篇（一）">Nginx进阶篇（一）</a><time datetime="2021-07-25T15:46:19.000Z" title="发表于 2021-07-25 15:46:19">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/" title="Nginx服务启停和升级">Nginx服务启停和升级</a><time datetime="2021-07-25T15:31:11.000Z" title="发表于 2021-07-25 15:31:11">2021-07-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By liberxk</div><div class="footer_custom_text">Hi, Welcome to my Blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'QIxHNfGbxgw1l2HJJ1W4CB5e-MdYXbMMI',
+      appKey: '6xUe77BqRdwmV1g37xY4Xzqr',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: true,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !true) {
+  if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -184,3 +184,11 @@ pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selectio
 #article-container pre code {
     padding: 2px;
 }
+
+#nav{
+    height: 52px;
+}
+
+#nav .menus_items .menus_item {
+    margin-bottom: 1px;
+}
