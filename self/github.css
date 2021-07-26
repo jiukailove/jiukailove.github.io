@@ -192,3 +192,7 @@ pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selectio
 #nav .menus_items .menus_item {
     margin-bottom: 1px;
 }
+
+#page-header.nav-fixed #nav {
+    top: -52px;
+}
