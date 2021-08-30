@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>学习笔记</title><meta name="author" content="liberxk"><meta name="copyright" content="liberxk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="学习笔记">
+<meta property="og:url" content="http://jiukailove.github.io/page/3/index.html">
+<meta property="og:site_name" content="学习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="liberxk">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://jiukailove.github.io/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: liberxk","link":"链接: ","source":"来源: 学习笔记","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '学习笔记',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-08-30 11:54:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/self/github.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">学习笔记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/" title="设计模式-命令模式">设计模式-命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T21:17:06.000Z" title="发表于 2019-10-02 21:17:06">2019-10-02</time></span></div><div class="content">定义命令模式(Command Pattern)是对命令的封装，每一个命令都是一个操作：请求方发出请求要求执行一个操作，接收方收到请求并执行操作。命令模式解耦了请求方和接收方，请求方只需请求执行命令，不用关心命令怎样被接收、怎样被操作及是否被执行等。
+类图
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        ICommand cmd = new ConcreteCommand();
+        Invoker invoker = new Invoker(cmd);
+        invoker.action();
+    &#125;
+&#125;
+
+//接收者
+class Receiver &#123;
+    public void action() &#123;
+        System.out.println("执行具体操作");
+    &#125;
+&#125;
+
+//抽象命令接口
+interface ICommand &#123;
+     ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="设计模式-迭代器模式">设计模式-迭代器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T16:18:29.000Z" title="发表于 2019-10-02 16:18:29">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义迭代器模式(Iterator Pattern)又叫做游标模式(Cursor Pattern)，它提供一种按顺序访问集合/容器对象元素的方法，而又无需暴露集合内部表示。迭代器模式可以为不同的容器提供一致的便利行为，而不用关心容器内元素的组成结构，本质是把集合对象的迭代行为抽离到迭代器中，提供一致的访问接口。
+我们把多个对象聚在一起的总体称为集合(Aggregate)，集合对象是能够包容一组对象的容器对象。不同的集合内部元素的聚合结构可能不同，而迭代器模式屏蔽了内部元素的获取细节，为外部提供一致的访问行为，解耦了元素迭代与集合对象间的耦合，并且提供不同的迭代器，可以为同一个集合对象提供不同顺序的元素访问行为。
+类图
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        IAggregate&lt;String> aggregate = new ConcreteAggregate&lt;>();
+        aggregate.add("one");
+      ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E8%B4%A3%E4%BB%BB%E9%93%BE%E6%A8%A1%E5%BC%8F/" title="设计模式-责任链模式">设计模式-责任链模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T15:49:11.000Z" title="发表于 2019-10-02 15:49:11">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义责任链模式(Chain of Responsibility Pattern)将链中的每一个节点都看作一个对象，每个节点处理的请求均不同，且内部自动维护下一个节点对象。当一个请求从链式的首端发出时，会沿着责任链预设的路径依次传递到每一个节点对象，直到被链中的某个对象处理为止。
+类图
+责任链模式主要包含2个角色：
+
+抽象处理者：定义一个请求处理的方法，并维护一个下一处理节点对象的引用
+具体处理者：对请求进行处理，如果不感兴趣，则进行转发
+
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        Handler handlerA = new ConcreteHandlerA();
+        Handler handlerB = new ConcreteHandlerB();
+        handlerA.setNextHandler(handlerB);
+        handlerA.handleRequest("requestB");
+    &#12 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" title="设计模式-策略模式">设计模式-策略模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T15:08:13.000Z" title="发表于 2019-10-02 15:08:13">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义策略模式(Stragety Pattern)又叫做政策模式(Policy Pattern)，它将定义的算法家族封装起来，让他们之间可以相互替换，从而让算法的变化不会影响到使用算法的用户。
+策略模式可以解决在多种相似算法的情况下使用if...else或switch...case所带来的复杂性和臃肿性，适用于以下场景：
+
+针对同一类型问题，有多种处理方式，每一种都能独立解决问题
+需要自由切换算法的场景
+需要屏蔽算法规则的场景
+
+类图
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        //选择一个具体策略
+        Strategy strategy = new ConcreteStrategyA();
+        //创建一个上下文环境
+        Context context = new Context(strategy);
+        //客户端直接通过上下文角色执行算法
+        context.execute();
+    & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" title="设计模式-模板方法模式">设计模式-模板方法模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T14:39:01.000Z" title="发表于 2019-10-02 14:39:01">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义模板方法模式（Template Method Pattern）指定义一个操作中的算法框架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+模板方法实际上封装了一个固定流程，该流程由几个步骤组成，具体步骤可以由子类进行不同的实现，从而让固定的流程产生不同的结果。
+类图
+模板方法模式主要包含2个角色：
+
+抽象模板：定义了一套算法框架/流程
+具体实现：对算法框架/流程的某些步骤进行实现
+
+通用写法abstract class AbstractClass&#123;
+
+    //一般定义为抽象方法，也可以是具体方法，然后子类重写
+    protected void step1() &#123;
+        System.out.println("do step1");
+    &#125;
+
+    protected void step2() &#123;
+        System.out.println("do step2");
+    &#125;
+
+    protected void step3() &#123;
+      ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%BC%8F/" title="设计模式-委派模式">设计模式-委派模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T09:56:29.000Z" title="发表于 2019-10-02 09:56:29">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义委派模式(Delegate Pattern)的作用是负责任务的调用和分配，是一种特殊的静态代理模式，可以理解为全权代理模式，但是代理模式注重过程，而委派模式注重结果。委派模式不属于GoF的23种设计模式。
+应用场景现实生活中常有委派模式的场景发生，例如，老板给项目经理下达任务，项目经理会根据实际情况给每个员工分配工作任务，，待员工把工作任务完成之后，再由项目经理向老板汇报工作进度和结果；再比如，我们经常写授权委托书，委托他人代办事务等。
+委派模式常用于一下场景：
+
+需要实现表现层和业务层之间的松耦合
+需要编排多个服务之间的调用
+需要封装一层服务查找和调用
+
+类图
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        new Delegate().doTask();
+    &#125;
+&#125;
+
+interface Task&#123;
+    void doTask();
+&#125;
+
+class ConcreteA implements Task& ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/" title="设计模式-桥接模式">设计模式-桥接模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T07:44:33.000Z" title="发表于 2019-10-02 07:44:33">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义桥接模式(Bridge Pattern)又叫做桥梁模式、接口(Interface)模式或柄体(Handle and Body)模式，指将抽象部分与具体实现部分分离，使它们都可以独立地变化，属于结构型设计模式。
+桥接模式的主要目的是通过组合的方式建立两个类之间的联系，而不是继承。
+类图
+通用写法public class Client &#123;
+    public static void main(String[] args) &#123;
+        Abstraction abs = new RefinedAbstraction(new ConcreteImplementorA());
+        abs.operation();
+    &#125;
+&#125;
+
+//抽象实现
+interface IImplementor&#123;
+    void operationImpl();
+&#125;
+
+class ConcreteImplementorA implements IImplementor&#123;
+
+    @Override
+    public ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/10/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" title="设计模式-适配器模式">设计模式-适配器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-10-02T06:46:35.000Z" title="发表于 2019-10-02 06:46:35">2019-10-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义适配器模式(Adapter Pattern)的功能是将一个类的接口变成客户端所期望的另一个接口，从而使原本因接口不匹配而导致无法在一起工作的两个类能够一起工作，属于结构型设计模式。
+适配器模式一般包含3个角色：
+
+目标角色ITarget：也就是我们期望的接口
+源角色Adaptee：存在于系统中，是指内容满足客户需求，但接口不匹配的接口实例
+适配器Adapter：将Adaptee转化为目标角色ITarget的类实例
+
+类适配器类适配器的原理是通过继承来实现适配器功能。
+
+public class Client &#123;
+    public static void main(String[] args) &#123;
+        DC5 adapter = new PowerAdapter();
+        adapter.output5V();
+    &#125;
+&#125;
+
+//Adaptee
+class AC220 &#123;
+    public int outputAC220V() &#123;
+        int output = 220;
+    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/06/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/" title="设计模式-组合模式">设计模式-组合模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-06-11T06:28:26.000Z" title="发表于 2019-06-11 06:28:26">2019-06-11</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义组合模式(Composite Pattern)也叫整体-部分(Part-Whole)模式，它的宗旨是通过将单个对象（叶子节点）和组合对象（树枝节点）用相同的接口进行表示，使得客户对单个对象和组合对象的使用具有一致性，属于结构型设计模式。
+组合模式一般用来描述整体与部分的关系，它将对象组织到属性结构中。
+类图
+通用写法abstract class Component&#123;
+    protected String name;
+
+    public Component(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public abstract String operation();
+&#125;
+
+//树枝节点
+class Composite extends Component&#123;
+
+    private List&lt;Component> components;
+
+    public Composite(String name) &#123;
+        super(name); ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/06/10/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/" title="设计模式-享元模式">设计模式-享元模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-06-10T22:49:28.000Z" title="发表于 2019-06-10 22:49:28">2019-06-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">定义享元模式(Flyweight Pattern)又叫做轻量级模式，是对象池的一种实现。享元模式提供了减少对象数量从而改善应用程序所需的对象结构的方式。其宗旨是共享细粒度对象，将多个对同一对象的访问集中起来，不必为每个访问者都创建一个单独的对象，以此来降低内存的消耗，属于结构型设计模式。
+享元模式把一个对象的状态分为内部状态和外部状态，内部状态是不变的，外部状态是变化的，然后通过共享不变的部分，达到减少对象数量并节约内存的目的。
+享元模式的本质是缓存共享对象，降低内存消耗。
+
+享元模式其实是工厂方法模式的一个改进，只不过增加了缓存这一功能。
+
+通用写法public class Client &#123;
+
+    public static void main(String[] args) &#123;
+        IFlyweight flyweight1 = FlyweightFactory.getFlyweight("aa");
+        IFlyweight flyweight2 = FlyweightFactory.getFlyweight("bb");
+      ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">liberxk</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">40</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AB%AF%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" title="Nginx实现服务器端集群搭建">Nginx实现服务器端集群搭建</a><time datetime="2021-07-25T17:36:15.000Z" title="发表于 2021-07-25 17:36:15">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="Nginx负载均衡">Nginx负载均衡</a><time datetime="2021-07-25T17:21:55.000Z" title="发表于 2021-07-25 17:21:55">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%BA%8C%EF%BC%89/" title="Nginx进阶篇（二）">Nginx进阶篇（二）</a><time datetime="2021-07-25T15:52:46.000Z" title="发表于 2021-07-25 15:52:46">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E8%BF%9B%E9%98%B6%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89/" title="Nginx进阶篇（一）">Nginx进阶篇（一）</a><time datetime="2021-07-25T15:46:19.000Z" title="发表于 2021-07-25 15:46:19">2021-07-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/07/25/Nginx/Nginx%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%81%9C%E5%92%8C%E5%8D%87%E7%BA%A7/" title="Nginx服务启停和升级">Nginx服务启停和升级</a><time datetime="2021-07-25T15:31:11.000Z" title="发表于 2021-07-25 15:31:11">2021-07-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Spring/"><span class="card-category-list-name">Spring</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/java%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">java基础</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"><span class="card-category-list-name">多线程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><span class="card-category-list-name">设计模式</span><span class="card-category-list-count">24</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Spring/" style="font-size: 1.15em; color: rgb(32, 21, 116)">Spring</a><a href="/tags/Vim/" style="font-size: 1.15em; color: rgb(86, 167, 111)">Vim</a><a href="/tags/Linux/" style="font-size: 1.25em; color: rgb(156, 23, 141)">Linux</a><a href="/tags/Nginx/" style="font-size: 1.35em; color: rgb(17, 54, 149)">Nginx</a><a href="/tags/java%E5%9F%BA%E7%A1%80/" style="font-size: 1.25em; color: rgb(41, 85, 172)">java基础</a><a href="/tags/jvm/" style="font-size: 1.25em; color: rgb(145, 18, 85)">jvm</a><a href="/tags/io/" style="font-size: 1.15em; color: rgb(148, 140, 128)">io</a><a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" style="font-size: 1.15em; color: rgb(84, 31, 148)">多线程</a><a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.45em; color: rgb(78, 18, 20)">设计模式</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">七月 2021</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/10/"><span class="card-archive-list-date">十月 2019</span><span class="card-archive-list-count">14</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2019/06/"><span class="card-archive-list-date">六月 2019</span><span class="card-archive-list-count">11</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2018/10/"><span class="card-archive-list-date">十月 2018</span><span class="card-archive-list-count">1</span></a></li></ul></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By liberxk</div><div class="footer_custom_text">Hi, Welcome to my Blog!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
